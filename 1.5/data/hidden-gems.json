@@ -1,0 +1,166 @@
+[
+  {
+    "id": "gem-shimokitazawa",
+    "name": "Shimokitazawa",
+    "emoji": "🎭",
+    "desc": "Syurga fashion vintage, thrift shop, indie music, serta deretan kafe unik dengan suasana bohemian yang sangat anti-mainstream di Tokyo.",
+    "cost": "¥2,000–4,000/hari",
+    "costRaw": 3000,
+    "season": "🍂 Autumn & Spring",
+    "crowd": "low",
+    "crowdPct": 30,
+    "activities": ["Thrift shopping vintage", "Berburu vinyl muzik indie", "Bersantai di kafe estetik"],
+    "food": [
+      { "icon": "🍛", "name": "Curry Spice — Shimokita kari enak ¥800" },
+      { "icon": "☕", "name": "Bear Pond Espresso — kopi artisan terbaik" },
+      { "icon": "🍜", "name": "Ramen Shimokita — bowl ramen ¥900" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Shimokitazawa+Tokyo",
+    "imgSpring": "assets/images/hidden-gems/shimokitazawa-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/shimokitazawa-winter.jpg"
+  },
+  {
+    "id": "gem-kamakura",
+    "name": "Kamakura Coast",
+    "emoji": "🗿",
+    "desc": "Bandar pesisir pantai bersejarah dengan tarikan Buddha Gangsa Raksasa, kuil buluh mistik Hokokuji, dan pemandangan laut yang menenangkan.",
+    "cost": "¥3,000–5,000/hari",
+    "costRaw": 4000,
+    "season": "🌸 Spring & Autumn",
+    "crowd": "med",
+    "crowdPct": 55,
+    "budget": true,
+    "activities": ["Great Buddha Kotoku-in", "Meneroka Hutan Buluh Hokokuji", "Berfoto berhampiran lintasan rel Enoden"],
+    "food": [
+      { "icon": "🍡", "name": "Shirasu Don (Teri Segar) — Khas Kamakura ¥1,200" },
+      { "icon": "🍦", "name": "Gelato Ubi Ungu Komachi-dori ¥500" },
+      { "icon": "🍢", "name": "Komachi-dori snacks — ¥200–500" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Kamakura+Japan",
+    "imgSpring": "assets/images/hidden-gems/kamakura-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/kamakura-winter.jpg"
+  },
+  {
+    "id": "gem-enoshima",
+    "name": "Enoshima",
+    "emoji": "🏝️",
+    "desc": "Pulau kecil ajaib dengan kuil dewi laut, gua laut, pemandangan Fuji yang spektakuler, dan kuliner seafood segar langsung di pelabuhan.",
+    "cost": "¥2,500–4,500/hari",
+    "costRaw": 3500,
+    "season": "☀️ Summer & Spring",
+    "crowd": "med",
+    "crowdPct": 60,
+    "budget": true,
+    "activities": ["Enoshima Shrine", "Sea candle lighthouse", "Gua Iwaya", "Sunset view Fuji"],
+    "food": [
+      { "icon": "🐙", "name": "Takoyaki segar di pelabuhan ¥500" },
+      { "icon": "🦑", "name": "Shirasu pizza unik ¥1,000" },
+      { "icon": "🍡", "name": "Dangos Benzaiten ¥300" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Enoshima+Island+Japan",
+    "imgSpring": "assets/images/hidden-gems/enoshima-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/enoshima-winter.jpg"
+  },
+  {
+    "id": "gem-kawagoe",
+    "name": "Kawagoe (Little Edo)",
+    "emoji": "🏘️",
+    "desc": "Membawa pengembara pulang ke era pemerintahan Samurai dengan bangunan kayu bersejarah Kurazukuri, kuil cinta Hikawa, dan lorong gula-gula tradisional.",
+    "cost": "¥2,000–3,500/hari",
+    "costRaw": 2800,
+    "season": "🍂 Autumn & Spring",
+    "crowd": "low",
+    "crowdPct": 35,
+    "budget": true,
+    "activities": ["Bergambar di Menara Jam Toki no Kane", "Sewa Kimono keliling bandar lama", "Membeli snek tradisional manis"],
+    "food": [
+      { "icon": "🍠", "name": "Imo Sweet Potato Chips gergasi ¥300-¥600" },
+      { "icon": "🍢", "name": "Mitarashi Dango sos kicap manis ¥200" },
+      { "icon": "🍣", "name": "Unaju (unagi) di Ichinoya ¥2,000" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Kawagoe+Saitama+Japan",
+    "imgSpring": "assets/images/hidden-gems/kawagoe-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/kawagoe-winter.jpg"
+  },
+  {
+    "id": "gem-shirakawago",
+    "name": "Shirakawa-go",
+    "emoji": "🏔️",
+    "desc": "Perkampungan warisan bersejarah UNESCO yang dikelilingi pergunungan dengan seni bina rumah bumbung jerami curam Gassho-zukuri bagaikan dalam negeri dongeng.",
+    "cost": "¥4,000–8,000/hari",
+    "costRaw": 6000,
+    "season": "❄️ Winter & Autumn",
+    "crowd": "low",
+    "crowdPct": 40,
+    "activities": ["Balai Cerap Ogimachi", "Masuk Muzium Rumah Tradisional Wada", "Menyusuri jambatan gantung merentasi sungai"],
+    "food": [
+      { "icon": "🐄", "name": "Sate Daging Hida Premium ¥800" },
+      { "icon": "🍶", "name": "Doburoku sake khas desa ¥600" },
+      { "icon": "🍱", "name": "Set Hidangan Sayur Gunung Tempatan ¥1,500" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Shirakawa-go+Gifu+Japan",
+    "imgSpring": "assets/images/hidden-gems/shirakawago-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/shirakawago-winter.jpg"
+  },
+  {
+    "id": "gem-ginzan",
+    "name": "Ginzan Onsen",
+    "emoji": "♨️",
+    "desc": "Desa onsen ajaib dari era Taisho dengan ryokan tua bergaya berlampu gas di tepi sungai. Lebih indah dari semua poster Jepang — terutama saat bersalju musim dingin.",
+    "cost": "¥8,000–15,000/malam (termasuk dinner)",
+    "costRaw": 12000,
+    "season": "❄️ Winter (salju!)",
+    "crowd": "low",
+    "crowdPct": 25,
+    "activities": ["Soak di public bath ¥500", "Jalan kaki malam hari di streetlamp", "Foto musim dingin bersalju", "Ryokan traditional stay"],
+    "food": [
+      { "icon": "♨️", "name": "Onsen tamago (telur onsen) ¥100" },
+      { "icon": "🍱", "name": "Kaiseki ryori di ryokan (included)" },
+      { "icon": "🍜", "name": "Wanko soba panas dekat onsen" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Ginzan+Onsen+Yamagata+Japan",
+    "imgSpring": "assets/images/hidden-gems/ginzan-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/ginzan-winter.jpg"
+  },
+  {
+    "id": "gem-otaru",
+    "name": "Otaru",
+    "emoji": "🏙️",
+    "desc": "Kota kanal romantis di Hokkaido dengan gedung bata tua era Meiji, toko musik box unik, dan sushi paling segar di dunia langsung dari pasar ikan.",
+    "cost": "¥4,000–7,000/hari",
+    "costRaw": 5500,
+    "season": "❄️ Winter & Autumn",
+    "crowd": "low",
+    "crowdPct": 30,
+    "activities": ["Otaru Canal night walk", "Kitaichi glass factory", "Music box museum", "Morning fish market"],
+    "food": [
+      { "icon": "🍣", "name": "Kaisen-don (seafood bowl) ¥2,000" },
+      { "icon": "🦞", "name": "Fresh crab legs di Sankaku Market" },
+      { "icon": "🍰", "name": "LeTAO double fromage cake ¥700" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Otaru+Hokkaido+Japan",
+    "imgSpring": "assets/images/hidden-gems/otaru-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/otaru-winter.jpg"
+  },
+  {
+    "id": "gem-hakone",
+    "name": "Hakone Hidden Spots",
+    "emoji": "🌋",
+    "desc": "Di luar Fuji yang ramai ada: sulfur valley Owakudani, danau mistis Ashi, onsen kelas dunia, dan seni kontemporer Hakone Open Air Museum.",
+    "cost": "¥5,000–12,000/hari",
+    "costRaw": 8000,
+    "season": "🍂 Autumn & Spring",
+    "crowd": "med",
+    "crowdPct": 50,
+    "budget": true,
+    "activities": ["Owakudani sulfur valley", "Lake Ashi pirate ship", "Hakone Open Air Museum", "Pola Museum of Art"],
+    "food": [
+      { "icon": "🥚", "name": "Kuro tamago (black egg) Owakudani ¥500" },
+      { "icon": "🍦", "name": "Hakone Bakery hot croissant ¥400" },
+      { "icon": "🍲", "name": "Yumoto onsen hot pot ¥1,800" }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Hakone+Japan",
+    "imgSpring": "assets/images/hidden-gems/hakone-spring.jpg",
+    "imgWinter": "assets/images/hidden-gems/hakone-winter.jpg"
+  }
+]

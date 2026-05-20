@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIPPON — Premium Japan Travel Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <canvas id="sk"></canvas>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading">
+        <div class="load-kanji">日本</div>
+        <div class="load-brand">NIPPON</div>
+        <div class="load-sub">TRAVEL PLANNER</div>
+        <div class="load-bar-wrap">
+            <div class="load-bar" id="load-bar"></div>
+        </div>
+        <div class="load-pct" id="load-pct">0%</div>
+    </div>
+
+    <!-- APP -->
+    <div id="app">
+        <!-- SIDEBAR -->
+        <aside id="sidebar">
+            <div class="sb-logo">
+                <div class="sb-logo-icon">🏯</div>
+                <div class="sb-logo-text">
+                    <span class="brand">NIPPON</span>
+                    <span class="sub">TRAVEL PLANNER</span>
+                </div>
+            </div>
+            <nav id="sidenav"></nav>
+            <button id="collapse-btn" onclick="toggleSidebar()">←</button>
+        </aside>
+
+        <!-- MAIN -->
+        <main id="main">
+            <!-- HOME -->
+            <div id="home-page" class="page active">
+                <div class="hero">
+                    <div class="hero-slides" id="hero-slides"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-kanji">日本</div>
+                    <div class="hero-content">
+                        <div class="hero-tag-pill">NIPPON • 日本 TRAVEL PLANNER</div>
+                        <h1 class="hero-title">Jelajahi Jepang<br><em>yang Sesungguhnya</em></h1>
+                        <p class="hero-subtitle-city" id="hero-city-sub">Tokyo — Kota yang tak pernah tidur</p>
+                        <p class="hero-desc">Platform perencanaan perjalanan Jepang premium untuk traveler Indonesia.
+                            Hidden gems, halal food, budget simulator, cuaca & itinerary lengkap.</p>
+                        <div class="hero-btns">
+                            <button class="hero-btn" onclick="navigate('gems')">💎 Hidden Gems</button>
+                            <button class="hero-btn" onclick="navigate('halal')">🕌 Halal Food</button>
+                            <button class="hero-btn" onclick="navigate('budget')">💴 Budget Planner</button>
+                            <button class="hero-btn" onclick="navigate('weather')">🌸 Cuaca</button>
+                        </div>
+                        <div class="hero-dots" id="hero-dots"></div>
+                    </div>
+                    <div class="scroll-hint">
+                        <div class="scroll-mouse">
+                            <div class="scroll-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stats strip -->
+                <div style="background:var(--bg2);padding:3rem 2rem">
+                    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem"
+                        id="home-stats"></div>
+                </div>
+                <!-- Feature grid -->
+                <div class="home-section">
+                    <h2
+                        style="font-family:'Playfair Display';font-size:clamp(1.6rem,3vw,2.4rem);color:var(--t);margin-bottom:6px">
+                        Semua yang Kamu <em style="color:var(--s)">Butuhkan</em></h2>
+                    <p style="color:var(--t3);font-size:13px;margin-bottom:2rem">Dari hidden gems hingga panduan halal,
+                        simulator budget & planning trip 7 hari</p>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem"
+                        id="home-features"></div>
+                </div>
+            </div>
+
+            <!-- GEMS PAGE -->
+            <div id="gems-page" class="page">
+                <div
+                    style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+                    <div>
+                        <div class="sec-tag">Section 11</div>
+                        <h1 class="sec-title">Hidden Gems <em>Jepang</em></h1>
+                        <p class="sec-sub">Destinasi tersembunyi, minim turis, dan penuh pesona lokal</p>
+                    </div>
+                    <div class="season-toggle" style="align-self:center">
+                        <button class="season-btn active" id="btn-spring" onclick="setSeason('spring')">🌸
+                            Spring</button>
+                        <button class="season-btn" id="btn-winter" onclick="setSeason('winter')">❄️ Winter</button>
+                    </div>
+                </div>
+                <div class="grid-auto" id="gems-grid"></div>
+            </div>
+
+            <!-- GEM DETAIL OVERLAY -->
+            <div id="gem-detail">
+                <div class="gem-detail-hero">
+                    <div class="gem-detail-hero-bg" id="gd-bg"></div>
+                    <div class="gem-detail-overlay"></div>
+                    <button class="gem-detail-back" onclick="closeGemDetail()">← Kembali</button>
+                    <div class="gem-detail-season">
+                        <button class="season-btn active" id="gd-spring" onclick="setGemDetailSeason('spring')">🌸
+                            Spring</button>
+                        <button class="season-btn" id="gd-winter" onclick="setGemDetailSeason('winter')">❄️
+                            Winter</button>
+                    </div>
+                    <div class="gem-detail-title">
+                        <div class="gem-detail-name" id="gd-name"></div>
+                        <div class="gem-detail-meta" id="gd-meta"></div>
+                    </div>
+                </div>
+                <div class="gem-detail-body" id="gd-body"></div>
+            </div>
+
+            <!-- HALAL PAGE -->
+            <div id="halal-page" class="page">
+                <div class="sec-tag">Section 13</div>
+                <h1 class="sec-title">Halal Food <em>Guide</em></h1>
+                <p class="sec-sub">Rekomendasi makanan halal terpercaya untuk traveler Muslim Indonesia di 4 kota utama
+                </p>
+                <div class="city-tabs" id="halal-tabs"></div>
+                <div class="grid-auto" id="halal-grid"></div>
+                <!-- Konbini & mosque info rendered below by JS -->
+                <div id="halal-extra" style="margin-top:2rem"></div>
+            </div>
+
+            <!-- SIMULATOR PAGE -->
+            <div id="sim-page" class="page">
+                <div class="sec-tag">Section 14</div>
+                <h1 class="sec-title">Food Savings <em>Simulator</em></h1>
+                <p class="sec-sub">Hitung penghematan makan dalam ¥ JPY dan Rp IDR secara real-time</p>
+                <div class="grid-2" style="margin-top:2rem">
+                    <div class="card" style="padding:1.5rem">
+                        <h3 style="font-size:14px;color:var(--t);margin-bottom:1.4rem;font-weight:600">⚙️ Pengaturan
+                        </h3>
+                        <div class="slider-wrap">
+                            <div class="slider-label-row"><span class="slider-label">🗓 Total Hari Trip</span><span
+                                    class="slider-val" id="sv-days">7</span></div>
+                            <input type="range" min="3" max="21" value="7" id="sl-days" oninput="updateSim()">
+                            <div class="slider-ends"><span>3</span><span>21</span></div>
+                        </div>
+                        <div class="slider-wrap">
+                            <div class="slider-label-row"><span class="slider-label">🏪 Hari Makan Konbini</span><span
+                                    class="slider-val" id="sv-kb">2</span></div>
+                            <input type="range" min="0" max="7" value="2" id="sl-kb" oninput="updateSim()">
+                            <div class="slider-ends"><span>0</span><span id="sl-kb-max">7</span></div>
+                        </div>
+                        <div class="slider-wrap">
+                            <div class="slider-label-row"><span class="slider-label">🍜 Hari Restoran Budget</span><span
+                                    class="slider-val" id="sv-br">3</span></div>
+                            <input type="range" min="0" max="5" value="3" id="sl-br" oninput="updateSim()">
+                            <div class="slider-ends"><span>0</span><span id="sl-br-max">5</span></div>
+                        </div>
+                        <div style="padding:.9rem;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid rgba(255,255,255,.06)"
+                            id="sim-breakdown"></div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem">
+                        <div class="card"
+                            style="padding:1.5rem;background:rgba(61,220,132,.05);border-color:rgba(61,220,132,.18)">
+                            <div
+                                style="font-size:11px;color:var(--j);font-weight:700;letter-spacing:.1em;margin-bottom:4px">
+                                💚 TOTAL PENGHEMATAN</div>
+                            <div style="font-family:'Playfair Display';font-size:3rem;font-weight:700;color:var(--j);line-height:1"
+                                id="sim-sav-jpy">¥0</div>
+                            <div style="font-size:16px;color:#3ddc84;font-weight:600;margin-top:3px" id="sim-sav-idr">≈
+                                Rp 0</div>
+                            <div style="font-size:11px;color:var(--t3);margin-top:7px" id="sim-sav-pct">vs semua
+                                mid-range</div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                            <div class="card" style="padding:1rem">
+                                <div style="font-size:10px;color:var(--t3);margin-bottom:4px">Total Kamu</div>
+                                <div style="font-weight:700;font-size:16px;color:var(--s)" id="sim-mix-jpy">¥0</div>
+                                <div style="font-size:11px;color:var(--t3)" id="sim-mix-idr">Rp 0</div>
+                            </div>
+                            <div class="card" style="padding:1rem">
+                                <div style="font-size:10px;color:var(--t3);margin-bottom:4px">Jika Semua Restoran</div>
+                                <div style="font-weight:700;font-size:16px;color:#f08080" id="sim-full-jpy">¥0</div>
+                                <div style="font-size:11px;color:var(--t3)" id="sim-full-idr">Rp 0</div>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:1.2rem;flex:1">
+                            <div
+                                style="font-size:11px;color:var(--t3);margin-bottom:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em">
+                                Perbandingan Total (JPY)</div>
+                            <canvas id="sim-chart" height="160"></canvas>
+                        </div>
+                    </div>
+                    <!-- Reference table -->
+                    <div class="card col-full" style="padding:1.2rem">
+                        <h3 style="font-size:13px;color:var(--t);margin-bottom:.75rem;font-weight:600">📋 Referensi
+                            Harga Makan</h3>
+                        <div style="overflow-x:auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tempat</th>
+                                        <th>Per Meal</th>
+                                        <th>Per Hari</th>
+                                        <th>Per Hari (IDR)</th>
+                                        <th>Contoh</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>🏪 Convenience Store</td>
+                                        <td class="c-j">¥500–800</td>
+                                        <td class="c-g">~¥1,800</td>
+                                        <td style="color:var(--t2)">~Rp 187.000</td>
+                                        <td style="color:var(--t3)">Lawson, FamilyMart, 7-Eleven</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🍜 Budget Restaurant</td>
+                                        <td class="c-j">¥800–1,200</td>
+                                        <td class="c-g">~¥3,000</td>
+                                        <td style="color:var(--t2)">~Rp 312.000</td>
+                                        <td style="color:var(--t3)">Sukiya, Yoshinoya, Soba-ya</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🍣 Mid-range</td>
+                                        <td class="c-j">¥1,200–2,000</td>
+                                        <td class="c-g">~¥5,000</td>
+                                        <td style="color:var(--t2)">~Rp 520.000</td>
+                                        <td style="color:var(--t3)">Ichiran, Sushi-ya, Ramen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🥩 Premium</td>
+                                        <td class="c-j">¥3,000–8,000</td>
+                                        <td class="c-g">~¥12,000</td>
+                                        <td style="color:var(--t2)">~Rp 1.248.000</td>
+                                        <td style="color:var(--t3)">Sukiyaki, Kaiseki, Omakase</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUDGET PLANNER PAGE -->
+            <div id="budget-page" class="page">
+                <div class="sec-tag">Section 10</div>
+                <h1 class="sec-title">Complete Budget <em>Planner</em></h1>
+                <p class="sec-sub">Rencanakan seluruh biaya perjalanan dalam ¥ JPY dan Rp IDR</p>
+                <div class="grid-2" style="margin-top:2rem">
+                    <div class="card" style="padding:1.5rem">
+                        <h3 style="font-size:14px;font-weight:600;color:var(--t);margin-bottom:1.2rem">⚙️ Atur Budget
+                        </h3>
+                        <div id="budget-sliders"></div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem">
+                        <div class="card"
+                            style="padding:1.5rem;background:rgba(244,167,185,.04);border-color:rgba(244,167,185,.18)">
+                            <div
+                                style="font-size:11px;color:var(--s);font-weight:700;letter-spacing:.1em;margin-bottom:5px">
+                                💰 TOTAL BUDGET</div>
+                            <div style="font-family:'Playfair Display';font-size:2.6rem;font-weight:700;color:var(--s);line-height:1"
+                                id="bud-total-jpy">¥0</div>
+                            <div style="font-size:13px;color:rgba(244,167,185,.7);margin:3px 0">+ tiket pesawat</div>
+                            <div style="font-family:'Playfair Display';font-size:1.9rem;font-weight:700;color:var(--g)"
+                                id="bud-total-idr">Rp 0</div>
+                            <div style="font-size:11px;color:var(--t3);margin-top:3px" id="bud-total-sub">Total 7 hari
+                            </div>
+                            <div
+                                style="margin-top:1rem;padding:.7rem;background:rgba(255,255,255,.04);border-radius:8px">
+                                <div style="font-size:10px;color:var(--t3)">Per hari rata-rata</div>
+                                <div style="font-size:18px;font-weight:700;color:var(--j);margin-top:2px"
+                                    id="bud-perday">¥0/hari</div>
+                                <div style="font-size:10px;color:var(--t3)" id="bud-perday-idr">Rp 0/hari</div>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:1.2rem;flex:1">
+                            <div
+                                style="font-size:11px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">
+                                Breakdown Budget</div>
+                            <div id="budget-bars"></div>
+                        </div>
+                    </div>
+                    <div class="card col-full" style="padding:1.2rem">
+                        <h3 style="font-size:13px;font-weight:600;color:var(--t);margin-bottom:.75rem">📊 Rincian
+                            Lengkap</h3>
+                        <div style="overflow-x:auto">
+                            <table class="data-table" id="budget-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <th class="price-jpy">JPY</th>
+                                        <th class="price-idr">IDR</th>
+                                        <th>% Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="budget-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card col-full" style="padding:1.2rem">
+                        <canvas id="budget-chart" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRESET PAGE -->
+            <div id="preset-page" class="page">
+                <div class="sec-tag">Fixed Preset</div>
+                <h1 class="sec-title">Preset Budget <em>7 Hari Jepang</em></h1>
+                <p class="sec-sub">Rekomendasi budget realistis siap pakai — nilai fixed sebagai referensi trip standar
+                </p>
+                <div
+                    style="margin:.75rem 0 1.5rem;padding:.7rem 1.1rem;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:9px;font-size:12px;color:var(--g)">
+                    ⚠️ Nilai dalam preset ini sudah tetap. Untuk mengubah nilai, gunakan tab Budget Planner.</div>
+                <div class="grid-2" id="preset-content"></div>
+            </div>
+
+            <!-- TRANSPORT PAGE -->
+            <div id="transport-page" class="page">
+                <div class="sec-tag">Transportasi</div>
+                <h1 class="sec-title">Biaya Transport <em>Jepang</em></h1>
+                <p class="sec-sub">Semua biaya kereta, bus, Shinkansen & IC card dalam ¥ JPY dan Rp IDR</p>
+                <div class="grid-auto" id="transport-grid" style="margin-top:2rem"></div>
+                <div id="transport-extra" style="margin-top:2rem"></div>
+            </div>
+
+            <!-- CURRENCY PAGE -->
+            <div id="currency-page" class="page">
+                <div class="sec-tag">Kurs Valuta</div>
+                <h1 class="sec-title">Kalkulator <em>IDR ↔ JPY</em></h1>
+                <p class="sec-sub" id="curr-rate-sub">Kurs referensi: 1 JPY ≈ Rp 104</p>
+
+                <!-- NEW: Central Yen Currency Management Panel -->
+                <div class="card" style="padding:1.5rem;margin:1.5rem 0;background:rgba(255,255,255,0.02)">
+                    <h3 style="font-size:14px;font-weight:600;color:var(--s);margin-bottom:1.2rem;display:flex;align-items:center;gap:6px">
+                        ⚙️ Pengaturan Nilai Tukar & Tampilan (Currency Configuration)
+                    </h3>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem">
+                        <!-- Input Kurs -->
+                        <div>
+                            <label style="font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:8px">1 Yen (JPY) ke Rupiah (IDR)</label>
+                            <div style="display:flex;gap:7px;align-items:center">
+                                <span style="font-size:16px;color:var(--t2)">Rp</span>
+                                <input type="number" id="setting-kurs-rate" class="conv-input" style="width:110px;margin:0;padding:8px 12px;font-size:14px;text-align:center" value="104" min="50" max="300" step="1">
+                                <button class="hero-btn" onclick="applyCustomKurs()" style="padding:8px 16px;margin:0;font-size:12px;font-weight:600;white-space:nowrap;background:rgba(244,167,185,0.15);border-color:rgba(244,167,185,0.3);color:var(--s)">Terapkan</button>
+                            </div>
+                            <span style="font-size:10px;color:var(--t3);margin-top:5px;display:block">Mengubah seluruh harga JPY ↔ IDR di website secara otomatis.</span>
+                        </div>
+                        
+                        <!-- Toggle Currency Display Mode -->
+                        <div>
+                            <label style="font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:8px">Mode Tampilan Harga</label>
+                            <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                <button class="hero-btn active" id="btn-curr-dual" onclick="setCurrencyDisplayMode('dual')" style="padding:7px 12px;font-size:11px">Yen + Rupiah</button>
+                                <button class="hero-btn" id="btn-curr-jpy" onclick="setCurrencyDisplayMode('jpy')" style="padding:7px 12px;font-size:11px">Hanya Yen (¥)</button>
+                                <button class="hero-btn" id="btn-curr-idr" onclick="setCurrencyDisplayMode('idr')" style="padding:7px 12px;font-size:11px">Hanya Rupiah (Rp)</button>
+                            </div>
+                            <span style="font-size:10px;color:var(--t3);margin-top:5px;display:block">Pilih preferensi tampilan denominasi harga.</span>
+                        </div>
+
+                        <!-- Reset & Status -->
+                        <div style="display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid rgba(255,255,255,0.06);padding-left:1.5rem">
+                            <div>
+                                <label style="font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:4px">Status Sistem</label>
+                                <div style="font-size:13px;color:var(--j);font-weight:600" id="currency-status-msg">1 JPY = Rp104 (Aktif)</div>
+                            </div>
+                            <div style="margin-top:10px">
+                                <button class="hero-btn" onclick="resetCurrencySettings()" style="padding:6px 14px;font-size:11px;background:transparent;border-color:rgba(255,255,255,0.12);color:var(--t2)">
+                                    🔄 Reset ke Default
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="padding:2rem;margin:1.5rem 0;text-align:center">
+                    <div style="display:flex;justify-content:center;gap:7px;margin-bottom:1.5rem">
+                        <button class="conv-mode-btn active" id="btn-idr2jpy" onclick="setCurrMode('idr2jpy')">IDR →
+                            JPY</button>
+                        <button class="conv-mode-btn" id="btn-jpy2idr" onclick="setCurrMode('jpy2idr')">JPY →
+                            IDR</button>
+                    </div>
+                    <div
+                        style="display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.4rem">
+                        <div style="text-align:center">
+                            <div style="font-size:11px;color:var(--t3);margin-bottom:7px;text-transform:uppercase;letter-spacing:.08em"
+                                id="curr-from-lbl">Rupiah (IDR)</div>
+                            <input type="number" class="conv-input" id="curr-input" value="1000000" style="width:215px"
+                                oninput="updateCurr()">
+                            <div style="font-size:12px;color:var(--t3);margin-top:5px" id="curr-from-fmt">Rp 1.000.000
+                            </div>
+                        </div>
+                        <div style="font-size:3rem;color:var(--s);animation:float 3s ease-in-out infinite">⇄</div>
+                        <div style="text-align:center">
+                            <div style="font-size:11px;color:var(--t3);margin-bottom:7px;text-transform:uppercase;letter-spacing:.08em"
+                                id="curr-to-lbl">Yen (JPY)</div>
+                            <div class="conv-result" style="width:215px" id="curr-result">¥ 9.615</div>
+                            <div style="font-size:12px;color:var(--t3);margin-top:5px" id="curr-to-fmt">9.615</div>
+                        </div>
+                    </div>
+                    <div style="font-size:12px;color:var(--t3)">Kurs: 1 JPY = Rp 104 • 1 IDR = ¥0.0096</div>
+                </div>
+                <div class="card" style="padding:1.4rem">
+                    <h3 style="font-size:14px;font-weight:600;color:var(--t);margin-bottom:1rem">💡 Referensi Biaya di
+                        Jepang</h3>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.55rem"
+                        id="curr-examples"></div>
+                </div>
+            </div>
+
+            <!-- WEATHER PAGE -->
+            <div id="weather-page" class="page">
+                <div class="sec-tag">Section 12</div>
+                <h1 class="sec-title">Cuaca & <em>Musim</em></h1>
+                <p class="sec-sub">Grafik suhu, peluang hujan, kepadatan wisata & festival per bulan</p>
+                <div style="display:flex;gap:7px;margin:1.5rem 0;flex-wrap:wrap" id="weather-dest-tabs"></div>
+                <div class="card" style="padding:1.4rem;margin-bottom:1.2rem">
+                    <div style="font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem"
+                        id="weather-chart-title">Suhu (°C) & Peluang Hujan (%) — Tokyo</div>
+                    <canvas id="weather-chart" height="220"></canvas>
+                </div>
+                <div style="margin-bottom:1rem">
+                    <div style="font-size:12px;color:var(--t2);font-weight:600;margin-bottom:.75rem">Pilih Bulan untuk
+                        Detail:</div>
+                    <div class="month-grid" id="month-btns"></div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.85rem;margin-top:.5rem"
+                        id="weather-detail-cards"></div>
+                </div>
+            </div>
+
+            <!-- PREP PAGE -->
+            <div id="prep-page" class="page">
+                <div class="sec-tag">Section 7</div>
+                <h1 class="sec-title">Persiapan <em>Trip Jepang</em></h1>
+                <p class="sec-sub">Panduan lengkap sebelum berangkat dan saat kembali ke Indonesia</p>
+                <div style="display:flex;gap:7px;margin:1.5rem 0">
+                    <button class="conv-mode-btn active" id="btn-before" onclick="setPrepTab('before')">🛫 Sebelum
+                        Berangkat</button>
+                    <button class="conv-mode-btn" id="btn-after" onclick="setPrepTab('after')">🛬 Kembali ke
+                        Indonesia</button>
+                </div>
+                <div id="prep-accordions"></div>
+            </div>
+
+            <!-- TIPS PAGE -->
+            <div id="tips-page" class="page">
+                <div class="sec-tag">Section 15</div>
+                <h1 class="sec-title">Tips Traveler <em>Indonesia 🇮🇩</em></h1>
+                <p class="sec-sub">Panduan lengkap khusus untuk traveler Indonesia yang berangkat ke Jepang</p>
+                <div style="margin-top:1.5rem" id="tips-accordions"></div>
+            </div>
+
+            <!-- PLANNING PAGE -->
+            <div id="planning-page" class="page">
+                <div class="sec-tag">Planning Trip</div>
+                <h1 class="sec-title">Japan Trip <em>Planner</em></h1>
+                <p class="sec-sub">Pilih tipe perjalananmu lalu ikuti itinerary harian yang sudah dioptimasi per area
+                </p>
+                <!-- 3 Option Cards -->
+                <div class="grid-3" style="margin-top:1.5rem;margin-bottom:2rem" id="plan-options"></div>
+                <!-- Selected plan banner -->
+                <div id="plan-banner"
+                    style="border-radius:16px;padding:1.4rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+                </div>
+                <!-- Itinerary (Option A only) -->
+                <div id="plan-itinerary"></div>
+            </div>
+        </main>
+
+        <!-- BOTTOM NAV -->
+        <nav id="botnav"></nav>
+    </div>
+
+    
+
+    <!-- Modular Data and Logic -->
+    <script src="data/hidden-gems-data.js"></script>
+    <script src="data/halal-food-data.js"></script>
+    <script src="js/baru-logic.js"></script>
+</body>
+</html>
