@@ -1,0 +1,54 @@
+<!-- components/login-modal.html -->
+<div id="login-modal" class="modal-overlay">
+  <div class="modal-card card">
+    
+    <div class="modal-header">
+      <h2 class="modal-title">🌸 NIPPON <em>Collab</em></h2>
+      <button class="modal-close-btn" onclick="closeAuthModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Masuk</button>
+        <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Daftar</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="auth-group">
+          <label class="auth-label" for="auth-email">Alamat Email</label>
+          <div class="auth-input-wrap">
+            <input type="email" id="auth-email" class="auth-input" placeholder="contoh@domain.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="auth-group">
+          <label class="auth-label" for="auth-password">Password</label>
+          <div class="auth-input-wrap">
+            <input type="password" id="auth-password" class="auth-input" placeholder="Min. 6 karakter" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <button type="submit" class="auth-submit-btn" id="auth-submit-btn">
+          <span class="btn-text" id="auth-btn-text">Masuk Sekarang</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+
+      <!-- DIVIDER -->
+      <div class="oauth-divider">
+        <span>atau</span>
+      </div>
+
+      <!-- GOOGLE LOGIN -->
+      <button class="oauth-google-btn" onclick="handleGoogleLogin()">
+        <img src="https://lh3.googleusercontent.com/COxitfgDOvmg5sE1ngTR6sB5MOKsJEQ1rdwtz7q4sIF2wlEiQ7thj6a8h1D79CawBtY" alt="Google Logo" class="google-icon">
+        <span>Masuk dengan Google</span>
+      </button>
+
+
+    </div>
+
+  </div>
+</div>
